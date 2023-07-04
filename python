@@ -1,0 +1,58 @@
+import datetime
+import os
+
+def create_new_planner():
+    # 사용자에게 날짜를 입력받습니다.
+    date = input("날짜를 입력하세요: ")
+
+    # 날짜가 제목인 메모장을 새로 작성합니다.
+    file_path = os.path.join(os.path.expanduser("~/Desktop"), date + ".txt")
+    with open(file_path, "w") as f:
+        f.write("")
+
+    # 사용자에게 메모장에 내용을 입력받습니다.
+    print("메모장에 내용을 입력하세요: ")
+    content = input()
+
+    # 메모장에 내용을 입력합니다.
+    with open(file_path, "a") as f:
+        f.write(content + "\n")
+
+def show_previous_planner():
+    # 사용자에게 날짜를 입력받습니다.
+    date = input("날짜를 입력하세요: ")
+
+    # 날짜가 제목인 메모장을 엽니다.
+    file_path = os.path.join(os.path.expanduser("~/Desktop"), date + ".txt")
+    with open(file_path, "r") as f:
+        content = f.read()
+
+    # 메모장의 내용을 출력합니다.
+    print(content)
+
+def write_completion():
+    # 사용자에게 날짜를 입력받습니다.
+    date = input("날짜를 입력하세요: ")
+
+    # 날짜가 제목인 메모장을 엽니다.
+    file_path = os.path.join(os.path.expanduser("~/Desktop"), date + ".txt")
+    with open(file_path, "a") as f:
+        f.write("완성도: " + input("완성도를 입력하세요: "))
+
+while True:
+    # 사용자에게 메뉴를 선택하라고 요청합니다.
+    print("1. 새로운 플래너 작성")
+    print("2. 이전 플래너 내용 확인")
+    print("3. 완성도 작성")
+    print("0. 종료")
+
+    choice = int(input("메뉴를 선택하세요: "))
+
+    if choice == 1:
+        create_new_planner()
+    elif choice == 2:
+        show_previous_planner()
+    elif choice == 3:
+        write_completion()
+    elif choice == 0:
+        break
